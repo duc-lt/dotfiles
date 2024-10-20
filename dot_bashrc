@@ -5,4 +5,11 @@
 
 alias ls='ls --color=auto'
 PS1='[\u@\h \W]\$ '
+# docker completion
+if [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+fi
+
 export EDITOR=nvim
+export PATH=$PATH:/usr/local/go/bin:~/go/bin
+
