@@ -4,31 +4,24 @@
 -- 	{ src = "https://github.com/ibhagwan/fzf-lua" },
 -- })
 
--- TODO: remove lazy.nvim when nvim 0.12 is released
-local lazypath = vim.fn.stdpath("data") .. "/site/pack/core/opt/lazy.nvim"
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
-	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-	local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
-	if vim.v.shell_error ~= 0 then
-		vim.api.nvim_echo({
-			{ "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-			{ out,                            "WarningMsg" },
-			{ "\nPress any key to exit..." },
-		}, true, {})
-		vim.fn.getchar()
-		os.exit(1)
-	end
+-- TODO: remove current plugin manager in favour of vim.pack when nvim 0.12 is released
+local package_path = vim.fn.stdpath("data") .. "/site/pack/core/opt"
+local plugman_path = package_path .. "mini.deps"
+if not (vim.uv or vim.loop).fs_stat(plugman_path) then
+	local plugman_repo = "https://github.com/nvim-mini/mini.deps"
+	vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=main", plugman_repo, plugman_path })
 end
-vim.opt.rtp:prepend(lazypath)
+vim.opt.rtp:prepend(plugman_path)
 
--- vim.g.mapleader = " "
--- vim.g.maplocalleader = "\\"
-
-require("lazy").setup({
-	spec = {
-		{ "rebelot/kanagawa.nvim" },
-		{ "stevearc/oil.nvim" },
-		{ "ibhagwan/fzf-lua" },
+require("mini.deps").setup({
+	path = {
+		package = package_path,
 	},
-	checker = { enabled = true },
 })
+local add = MiniDeps.add
+add({ source = "rebelot/kanagawa.nvim" })
+add({ source = "stevearc/oil.nvim" })
+add({ source = "ibhagwan/fzf-lua" })
+add({ source = "nvim-mini/mini.completion" })
+add({ source = "sindrets/diffview.nvim" })
+add({ source = "lewis6991/gitsigns.nvim" })
