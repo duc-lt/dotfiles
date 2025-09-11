@@ -19,12 +19,12 @@ vim.keymap.set("n", "<C-d>", "zz<C-d>")
 vim.keymap.set("n", "<C-u>", "zz<C-u>")
 
 -- colorscheme
-vim.cmd.colorscheme("kanagawa-wave")
+vim.cmd.colorscheme("tokyonight-moon")
 
 -- code completion
 vim.opt.completeopt = "menuone,noinsert,popup,fuzzy"
 -- vim.opt.complete = ".,o"
-vim.opt.pumheight = 7
+-- vim.opt.pumheight = 7
 -- vim.opt.autocomplete = true
 vim.api.nvim_create_autocmd('LspAttach', {
 	callback = function(ev)
@@ -51,7 +51,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 -- code diagnostics
 vim.diagnostic.config({
-	update_in_insert = true,
+	-- update_in_insert = true,
 })
 
 -- more code configs
@@ -59,6 +59,7 @@ vim.keymap.set("n", "<leader>F", vim.lsp.buf.format)
 vim.keymap.set("n", "grd", vim.lsp.buf.definition)
 vim.keymap.set("n", "grD", vim.lsp.buf.declaration)
 
+-- TODO: handle gx to open a new buffer instead of default xdg-open behaviour
 local function do_open(uri)
 	for i in string.gmatch(uri, "([^:])") do
 		print(i)

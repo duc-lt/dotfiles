@@ -20,8 +20,11 @@ require("mini.deps").setup({
 })
 local add = MiniDeps.add
 add({ source = "rebelot/kanagawa.nvim" })
+add({ source = "folke/tokyonight.nvim" })
 add({ source = "stevearc/oil.nvim" })
 add({ source = "ibhagwan/fzf-lua" })
 add({ source = "nvim-mini/mini.completion" })
 add({ source = "sindrets/diffview.nvim" })
 add({ source = "lewis6991/gitsigns.nvim" })
+add({ source = "nvim-mini/mini.pairs" })
+add({ source = "MeanderingProgrammer/render-markdown.nvim" })

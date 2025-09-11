@@ -1,3 +1,5 @@
+require("plugins.autopairs")
 require("plugins.completion")
 require("plugins.oil")
 require("plugins.fzf")
+require("plugins.markdown")
